@@ -15,12 +15,10 @@ var io = require("socket.io")(server);
 // middleware- to manipulate data from client to server and vise versa
 app.use(express.json());
 
-const DB =
-  "mongodb+srv://Somongoadmin:somongoadmin123@cluster0.vgskmvj.mongodb.net/?retryWrites=true&w=majority"; // database instance link
-
+const DB ="mongodb+srv://Somongoadmin:somongoadmin123@godly-cluster.cphca.mongodb.net/?retryWrites=true&w=majority"; // database instance link
 //Socket connection
 io.on("connection", (socket) => {
-  console.log("IO Connected!");
+  console.log("Socket IO Connected!");
 
   //create room
   socket.on("createRoom", async ({ nickname }) => {
