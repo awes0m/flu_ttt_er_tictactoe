@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       create: (context) => RoomDataProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'multi player tic tac toe',
         theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: bgColor),
         initialRoute: MainMenuScreen.routename,
         routes: {

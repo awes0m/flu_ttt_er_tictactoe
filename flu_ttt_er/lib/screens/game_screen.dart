@@ -1,3 +1,5 @@
+import 'package:flu_ttt_er/resources/socket_methods.dart';
+import 'package:flu_ttt_er/widgets/waiting_lobby.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,15 +14,29 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  final SocketMethods _socketMethods = SocketMethods();
+
+  @override
+  void initState() {
+    super.initState();
+    _socketMethods.updateRoomListner(context);
+    _socketMethods.updatePlayerStateListner(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(Provider.of<RoomDataProvider>(context).player1.nickname);
-    print(Provider.of<RoomDataProvider>(context).player2.nickname);
-
+    RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
     return Scaffold(
-      body: Center(
-        child: Text(Provider.of<RoomDataProvider>(context).roomData.toString()),
-      ),
+      body: roomDataProvider.roomData['isJoin']
+          ? const WaitingLobby()
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                    Provider.of<RoomDataProvider>(context).roomData.toString()),
+              ],
+            ),
     );
   }
 }

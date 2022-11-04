@@ -62,4 +62,11 @@ class SocketMethods {
           .updatePlayer2(playerData[1]);
     });
   }
+
+  void updateRoomListner(BuildContext context) {
+    _socketClient.on('updateRoom', (data) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(data);
+    });
+  }
 }

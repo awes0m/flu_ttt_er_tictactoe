@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/player.dart';
 
+/// RoomData [Provider] includes details of Both [Player]s including their [socketID],[points]and [playerType]info ie 'X' or 'Y'
 class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> _roomData = {};
   Player _player1 = Player(
@@ -10,7 +11,7 @@ class RoomDataProvider extends ChangeNotifier {
     points: 0,
     playerType: 'X',
   );
-  final Player _player2 = Player(
+  Player _player2 = Player(
     nickname: '',
     socketID: '',
     points: 0,
@@ -32,7 +33,7 @@ class RoomDataProvider extends ChangeNotifier {
   }
 
   void updatePlayer2(Map<String, dynamic> player2Data) {
-    _player1 = Player.fromMap(player2Data);
+    _player2 = Player.fromMap(player2Data);
     notifyListeners();
   }
 }

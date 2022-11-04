@@ -6,8 +6,8 @@ class SocketClient {
   static SocketClient? _instance;
 
   SocketClient._internal() {
-    //TODO: Enter Production bsck end IP Address
-    socket = IO.io('http://192.168.43.150:3000', <String, dynamic>{
+    //TODO: Enter Production back end IP Address
+    socket = IO.io('http://192.168.225.148:3000', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });
