@@ -15,7 +15,6 @@ class _WaitingLobbyState extends State<WaitingLobby> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     rooomIdController = TextEditingController(
         text: Provider.of<RoomDataProvider>(context, listen: false)
@@ -24,7 +23,6 @@ class _WaitingLobbyState extends State<WaitingLobby> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     rooomIdController.dispose();
   }
@@ -36,7 +34,11 @@ class _WaitingLobbyState extends State<WaitingLobby> {
       children: [
         const Text("Waiting for a Player to join ...."),
         const SizedBox(height: 20),
-        CustomTextField(controller: rooomIdController, hintText: '',isReadOnly: false,)
+        CustomTextField(
+          controller: rooomIdController,
+          hintText: '',
+          isReadOnly: false,
+        )
       ],
     );
   }

@@ -7,7 +7,7 @@ class SocketClient {
 
   SocketClient._internal() {
     //TODO: Enter Production back end IP Address
-    socket = IO.io('http://192.168.225.148:3000', <String, dynamic>{
+    socket = IO.io('http://192.168.93.236:3000', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });

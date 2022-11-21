@@ -30,6 +30,18 @@ class SocketMethods {
     }
   }
 
+  void tapGrid(int index, String roomId, List<String> displayElements) {
+    // if cell is blank=> we send in the index and roomId
+    // The Display elements [X] ansd [O] need s not be retuned to the backend server and can stay in fron end
+    if (displayElements[index] == '') {
+      //index.js, - On tap
+      _socketClient.emit('tap', {
+        'index': index,
+        'roomId': roomId,
+      });
+    }
+  }
+
 // LISTENERS
   void createRoomSuccessListner(BuildContext context) {
     _socketClient.on('createRoomSuccess', (room) {
@@ -67,6 +79,19 @@ class SocketMethods {
     _socketClient.on('updateRoom', (data) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(data);
+    });
+  }
+
+  void tappedlistener(BuildContext context) {
+    _socketClient.on('tapped', (data) {
+      RoomDataProvider roomDataProvider =
+          Provider.of<RoomDataProvider>(context, listen: false);
+      roomDataProvider.updateDisplayElements(
+        data['index'],
+        data['choice'],
+      );
+      roomDataProvider.updateRoomData(data['room']);
+      // check winner
     });
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flu_ttt_er/resources/socket_methods.dart';
-import 'package:flu_ttt_er/widgets/waiting_lobby.dart';
+import 'package:flu_ttt_er/widgets/views/scoreboard.dart';
+import 'package:flu_ttt_er/widgets/views/tic_tac_toe_board.dart';
+import 'package:flu_ttt_er/widgets/views/waiting_lobby.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,17 +28,21 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: roomDataProvider.roomData['isJoin']
-          ? const WaitingLobby()
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                    Provider.of<RoomDataProvider>(context).roomData.toString()),
-              ],
-            ),
-    );
+        body: roomDataProvider.roomData['isJoin']
+            ? const WaitingLobby()
+            : SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children:  [
+                      const ScoreBoard(),
+                      const TicTacToeBoard(),
+                      Text("${roomDataProvider.roomData['turn']['nickname']}'s turn")
+                    ],
+                  ),
+                ),
+              ));
   }
 }
